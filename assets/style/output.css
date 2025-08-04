@@ -181,6 +181,9 @@
   .relative {
     position: relative;
   }
+  .sticky {
+    position: sticky;
+  }
   .inset-0 {
     inset: calc(var(--spacing) * 0);
   }
@@ -217,9 +220,6 @@
   .hidden {
     display: none;
   }
-  .table {
-    display: table;
-  }
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
@@ -253,17 +253,8 @@
   .max-w-\[1320px\] {
     max-width: 1320px;
   }
-  .flex-grow {
-    flex-grow: 1;
-  }
   .grow {
     flex-grow: 1;
-  }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
   }
   .flex-col {
     flex-direction: column;
@@ -322,10 +313,6 @@
   }
   .overflow-hidden {
     overflow: hidden;
-  }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
   }
   .border-t {
     border-top-style: var(--tw-border-style);
@@ -448,16 +435,9 @@
   .uppercase {
     text-transform: uppercase;
   }
-  .underline {
-    text-decoration-line: underline;
-  }
   .shadow-md {
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .sm\:h-\[450px\] {
     @media (width >= 40rem) {
@@ -594,11 +574,6 @@
   .lg\:ml-8 {
     @media (width >= 64rem) {
       margin-left: calc(var(--spacing) * 8);
-    }
-  }
-  .lg\:ml-10 {
-    @media (width >= 64rem) {
-      margin-left: calc(var(--spacing) * 10);
     }
   }
   .lg\:h-\[650px\] {
@@ -1033,6 +1008,26 @@ h1,h2,h4,h5,h6,.navlink,.btn {
 h3 {
   font-weight: 700;
 }
+header {
+  position: relative;
+  width: 100%;
+  transition: all 1s ease-in-out;
+  z-index: 1000;
+}
+header.sticky {
+  position: fixed;
+  top: 0;
+  transform: translateY(-100%);
+  animation: slideDown 1s ease forwards;
+}
+@keyframes slideDown {
+  to {
+    transform: translateY(0);
+  }
+}
+.nav-link.active {
+  color: #149EC9;
+}
 @property --tw-space-y-reverse {
   syntax: "*";
   inherits: false;
@@ -1125,11 +1120,6 @@ h3 {
   inherits: false;
   initial-value: 0 0 #0000;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -1153,7 +1143,6 @@ h3 {
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
     }
   }
 }

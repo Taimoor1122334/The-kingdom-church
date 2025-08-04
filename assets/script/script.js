@@ -26,3 +26,38 @@
       });
     });
   });
+
+    window.addEventListener('scroll', function () {
+    const header = document.querySelector('header');
+    const triggerPoint = window.innerHeight * 0.5; 
+
+    if (window.scrollY > triggerPoint) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  });
+
+  
+   const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+
+      if (pageYOffset >= sectionTop - sectionHeight / 3) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
+  });
